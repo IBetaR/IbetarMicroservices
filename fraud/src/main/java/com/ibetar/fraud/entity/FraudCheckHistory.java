@@ -1,4 +1,4 @@
-package com.ibetar.customer.entity;
+package com.ibetar.fraud.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,23 +6,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+public class FraudCheckHistory {
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "customer_id_seq")
+            generator = "fraud_id_seq")
     @SequenceGenerator(
-            name = "customer_id_seq",
-            sequenceName = "customer_id_seq")
+            name = "fraud_id_seq",
+            sequenceName = "fraud_id_seq")
     private Integer id;
-    private String firstname;
-    private String lastname;
-    private String email;
-
+    private Integer customerId;
+    private boolean isFraudster;
+    private LocalDateTime createdAt;
 }
