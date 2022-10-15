@@ -1,10 +1,13 @@
 server:
   port: 8080
 spring:
+  application:
+    name: customer
   jpa:
     database: POSTGRESQL
     show-sql: true
     hibernate:
+      format_sql: true
       ddl-auto: create-drop
   datasource:
     platform: postgres
@@ -12,3 +15,11 @@ spring:
     username: ibetar
     password: password
     driverClassName: org.postgresql.Driver
+
+eureka:
+  client:
+    service-url:
+      defaultZOne: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+

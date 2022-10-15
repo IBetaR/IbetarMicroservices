@@ -20,10 +20,12 @@ public record CustomerService(CustomerRepository customerRepository, RestTemplat
         //todo: check if email is not taken
         customerRepository.saveAndFlush(customer);
         //todo: check if email fraudster
-        String httpHost = "http://localhost:8081";
+        //Service to connect to
+        String httpLocalHost = "http://localhost:8081";
+        String httpHostServer = "http://FRAUD";
         String apiEndPointUrl = "/api/v1/fraud-check/";
         String customerIdRequest = "{customerId}";
-        String url = httpHost + apiEndPointUrl + customerIdRequest;
+        String url = httpHostServer + apiEndPointUrl + customerIdRequest;
         FraudCheckResponse fraudCheckResponse = restTemplate.getForObject(
                 url, FraudCheckResponse.class, customer.getId());
         if (fraudCheckResponse.isFraudster()) {
